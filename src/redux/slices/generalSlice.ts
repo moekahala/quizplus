@@ -36,10 +36,13 @@ export const generalSlice = createSlice({
 
       state.winner = state.playersScore[0] > state.playersScore[1] ? 1 : 2;
     },
+    clearResults: () => {
+      return initialState;
+    },
   },
 });
 
 // Action creators are generated for each case reducer function
-export const { addMove, determineWinner } = generalSlice.actions;
+export const { addMove, determineWinner, clearResults } = generalSlice.actions;
 
 export default generalSlice.reducer;

@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import PlayersTurn from 'components/playersTurn/PlayersTurn';
 import CardsViewer from 'components/cardsViewer/CardsViewer';
 import {
@@ -10,7 +10,8 @@ import {
   keepCardsOpened,
   resetFlippedCards,
 } from 'utils/gameplay';
-import { addMove, determineWinner } from 'redux/slices/generalSlice';
+import { addMove, determineWinner, clearResults } from 'redux/slices/generalSlice';
+import { useAppDispatch } from 'redux/hooks';
 
 const NUMBER_OF_CARDS = 6;
 
@@ -25,21 +26,24 @@ const GameplayContainer = () => {
   const [cardsContent, setCardsContent] = useState<CardContent[]>([]);
   const [currentPlayer, setCurrentPlayer] = useState<number>(1);
   const [matchedCards, setMatchedCards] = useState(0);
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
+  const navigate = useNavigate();
   const flippedCards = useRef<number[]>([]);
 
   useEffect(() => {
+    dispatch(clearResults());
     setCardsContent(generateCardsContent(NUMBER_OF_CARDS));
   }, []);
 
   useEffect(() => {
     if (matchedCards === NUMBER_OF_CARDS) {
       dispatch(determineWinner());
+      navigate('/winner');
     }
   }, [matchedCards]);
 
   const handleClick = (key: number) => {
-    // prevent same card click
+    // prevent same card click or click on opened card
     if (flippedCards.current.includes(key) || cardsContent[key]?.matchedWithPeerCard) {
       return;
     }
@@ -64,7 +68,8 @@ const GameplayContainer = () => {
 
       setTimeout(() => {
         resetFlippedCards(flippedCards.current, cardsContent, setCardsContent);
-        flippedCards.current = [];
+        flippedCards.current.shift();
+        flippedCards.current.shift();
       }, 500);
     }
   };
