@@ -1,9 +1,18 @@
 import React, { useEffect, useRef, useState } from 'react';
+import { useDispatch } from 'react-redux';
 import PlayersTurn from 'components/playersTurn/PlayersTurn';
 import CardsViewer from 'components/cardsViewer/CardsViewer';
 import {
-  flipCard, generateCardsContent, isCardMatching, keepCardsOpened, resetFlippedCards,
+  flipCard,
+  generateCardsContent,
+  generateMoveMessage,
+  isCardMatching,
+  keepCardsOpened,
+  resetFlippedCards,
 } from 'utils/gameplay';
+import { addMove, determineWinner } from 'redux/slices/generalSlice';
+
+const NUMBER_OF_CARDS = 6;
 
 export interface CardContent {
     value: number;
@@ -15,11 +24,23 @@ export interface CardContent {
 const GameplayContainer = () => {
   const [cardsContent, setCardsContent] = useState<CardContent[]>([]);
   const [currentPlayer, setCurrentPlayer] = useState<number>(1);
+  const [matchedCards, setMatchedCards] = useState(0);
+  const dispatch = useDispatch();
   const flippedCards = useRef<number[]>([]);
+
+  useEffect(() => {
+    setCardsContent(generateCardsContent(NUMBER_OF_CARDS));
+  }, []);
+
+  useEffect(() => {
+    if (matchedCards === NUMBER_OF_CARDS) {
+      dispatch(determineWinner());
+    }
+  }, [matchedCards]);
 
   const handleClick = (key: number) => {
     // prevent same card click
-    if (flippedCards.current.includes(key)) {
+    if (flippedCards.current.includes(key) || cardsContent[key]?.matchedWithPeerCard) {
       return;
     }
 
@@ -27,23 +48,26 @@ const GameplayContainer = () => {
     flipCard(key, cardsContent, setCardsContent);
 
     if (flippedCards.current.length === 2) {
-      if (isCardMatching(flippedCards.current, cardsContent)) {
-        // ToDo add to history
+      const success = isCardMatching(flippedCards.current, cardsContent);
+      if (success) {
         keepCardsOpened(flippedCards.current, cardsContent, setCardsContent);
+        setMatchedCards(matchedCards + 2);
       } else {
         setCurrentPlayer(currentPlayer === 1 ? 2 : 1);
       }
 
+      dispatch(addMove({
+        success,
+        player: currentPlayer,
+        move: generateMoveMessage(flippedCards.current, cardsContent),
+      }));
+
       setTimeout(() => {
         resetFlippedCards(flippedCards.current, cardsContent, setCardsContent);
         flippedCards.current = [];
-      }, 1000);
+      }, 500);
     }
   };
-
-  useEffect(() => {
-    setCardsContent(generateCardsContent(18));
-  }, []);
 
   return (
     <>

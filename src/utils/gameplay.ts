@@ -76,3 +76,10 @@ export const flipCard = (
 
   setCardsContent(updatedCards);
 };
+
+export const generateMoveMessage = (flippedCards: number[], cardsContent: CardContent[]) => {
+  const firstCard = cardsContent[flippedCards[0]]?.value;
+  const secondCard = cardsContent[flippedCards[1]]?.value;
+
+  return `Opens Card ${firstCard} and ${secondCard}`;
+};
