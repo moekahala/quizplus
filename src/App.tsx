@@ -1,8 +1,9 @@
 import React from 'react';
+import MainContainer from 'components/containers/MainContainer';
 
 function App() {
   return (
-    <h1>Hello World</h1>
+    <MainContainer />
   );
 }
 

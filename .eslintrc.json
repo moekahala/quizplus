@@ -33,7 +33,11 @@
         // fixes JSX not allowed in files with extension '.tsx'eslint
         "react/jsx-filename-extension": [2, { "extensions": [".js", ".jsx", ".ts", ".tsx"] }],
         // fixes no-param-reassign with Redux Toolkit state assigns
-        "no-param-reassign": 0
+        "no-param-reassign": 0,
+        // fixes Function component is not a function declaration
+        "react/function-component-definition": 0,
+        "react/destructuring-assignment": 0,
+        "no-unused-vars": 0
     },
     "settings": {
         // fixes Unable to resolve path to module
