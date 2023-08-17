@@ -1,7 +1,8 @@
 import React from 'react';
+import PlayersTurn from 'components/playersTurn/PlayersTurn';
 
 const GameplayContainer = () => (
-  <div>gameplay here</div>
+  <PlayersTurn />
 );
 
 export default GameplayContainer;

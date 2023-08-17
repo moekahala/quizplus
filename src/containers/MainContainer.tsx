@@ -1,6 +1,6 @@
 import React from 'react';
 import { Routes, Route } from 'react-router-dom';
-import GameplayContainer from 'components/containers/gameplayContainer/GameplayContainer';
+import GameplayContainer from 'containers/gameplayContainer/GameplayContainer';
 
 function MainContainer() {
   return (

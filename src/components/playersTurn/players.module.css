@@ -1,0 +1,10 @@
+.playersWrapper {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    height: 3rem;
+    font-size: 2rem;
+    padding: 0 2rem;
+    margin-bottom: 2rem;
+}
