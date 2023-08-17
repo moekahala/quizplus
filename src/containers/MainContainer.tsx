@@ -1,13 +1,13 @@
 import React from 'react';
 import { Routes, Route } from 'react-router-dom';
-import GameplayContainer from 'containers/gameplayContainer/GameplayContainer';
-import WinnerContainer from 'containers/winnerContainer/WinnerContainer';
+import GameBoardContainer from 'containers/gameBoardContainer/GameBoardContainer';
+import ResultsContainer from 'containers/resultsContainer/ResultsContainer';
 
 function MainContainer() {
   return (
     <Routes>
-      <Route path="/" element={<GameplayContainer />} />
-      <Route path="/winner" element={<WinnerContainer />} />
+      <Route path="/" element={<GameBoardContainer />} />
+      <Route path="/results" element={<ResultsContainer />} />
     </Routes>
   );
 }

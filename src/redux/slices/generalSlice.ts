@@ -10,12 +10,14 @@ export interface GeneralState {
     winner: number | null;
     history: GameHistory[];
     playersScore: number[];
+    scoreTie: boolean;
 }
 
 const initialState: GeneralState = {
   winner: null,
   history: [],
   playersScore: [0, 0],
+  scoreTie: false,
 };
 
 export const generalSlice = createSlice({
@@ -31,10 +33,10 @@ export const generalSlice = createSlice({
     },
     determineWinner: (state) => {
       if (state.playersScore[0] === state.playersScore[1]) {
-        // handle same score
+        state.scoreTie = true;
+      } else {
+        state.winner = state.playersScore[0] > state.playersScore[1] ? 1 : 2;
       }
-
-      state.winner = state.playersScore[0] > state.playersScore[1] ? 1 : 2;
     },
     clearResults: () => {
       return initialState;

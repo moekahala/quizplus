@@ -1,4 +1,4 @@
-import { CardContent } from 'containers/gameplayContainer/GameplayContainer';
+import { CardContent } from 'containers/gameBoardContainer/GameBoardContainer';
 
 function shuffle(array: number[]) {
   let currentIndex = array.length; let

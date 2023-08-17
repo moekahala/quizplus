@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import PlayersTurn from 'components/playersTurn/PlayersTurn';
-import CardsViewer from 'components/cardsViewer/CardsViewer';
+import PlayersTurn from 'components/gameBoardPage/playersTurn/PlayersTurn';
+import CardsViewer from 'components/gameBoardPage/cardsViewer/CardsViewer';
 import {
   flipCard,
   generateCardsContent,
@@ -22,7 +22,7 @@ export interface CardContent {
     key: number;
 }
 
-const GameplayContainer = () => {
+const GameBoardContainer = () => {
   const [cardsContent, setCardsContent] = useState<CardContent[]>([]);
   const [currentPlayer, setCurrentPlayer] = useState<number>(1);
   const [matchedCards, setMatchedCards] = useState(0);
@@ -38,13 +38,14 @@ const GameplayContainer = () => {
   useEffect(() => {
     if (matchedCards === NUMBER_OF_CARDS) {
       dispatch(determineWinner());
-      navigate('/winner');
+      navigate('/results');
     }
   }, [matchedCards]);
 
   const handleClick = (key: number) => {
     // prevent same card click or click on opened card
-    if (flippedCards.current.includes(key) || cardsContent[key]?.matchedWithPeerCard) {
+    if (flippedCards.current.includes(key)
+        || cardsContent[key]?.matchedWithPeerCard) {
       return;
     }
 
@@ -82,4 +83,4 @@ const GameplayContainer = () => {
   );
 };
 
-export default GameplayContainer;
+export default GameBoardContainer;

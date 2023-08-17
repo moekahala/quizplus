@@ -10,12 +10,12 @@
 }
 
 .playersWrapper div {
-    padding: 1.5rem;
     border-radius: 1.5rem;
 }
 
 .selectedPlayer {
     font-weight: bold;
-    background-color: #BCE9DF;
+    background-color: #9ae3d5;
     box-shadow: 1px 1px 5px rgba(98, 98, 98, 0.41);
+    padding: 1.5rem 3rem;
 }
