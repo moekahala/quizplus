@@ -1,11 +1,58 @@
 .card {
-    margin: .5rem;
-    height: 15rem;
-    width: 15rem;
-    background-color: #747474;
+    margin: 1rem;
+    background-color: #F3E5BB;
     display: flex;
     justify-content: center;
     align-items: center;
     font-size: 3rem;
     outline: none;
+    border: none;
+    cursor: pointer;
+    border-radius: 1rem;
+    box-shadow: 1px 1px 5px rgba(98, 98, 98, 0.41);
 }
+
+.card:hover {
+    box-shadow: 1px 1px 10px rgba(100, 100, 100, 0.53);
+}
+
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 600px) {
+    .card {
+        width: 7rem;
+        height: 7rem;
+    }
+}
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-width: 600px) {
+    .card {
+        width: 8rem;
+        height: 8rem;
+    }
+}
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 768px) {
+    .card {
+        width: 9rem;
+        height: 9rem;
+    }
+}
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) {
+    .card {
+        width: 12rem;
+        height: 12rem;
+    }
+}
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 1200px) {
+    .card {
+        width: 15rem;
+        height: 15rem;
+    }
+}
+

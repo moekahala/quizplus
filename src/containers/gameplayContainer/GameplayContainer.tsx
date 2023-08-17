@@ -13,7 +13,7 @@ import {
 import { addMove, determineWinner, clearResults } from 'redux/slices/generalSlice';
 import { useAppDispatch } from 'redux/hooks';
 
-const NUMBER_OF_CARDS = 6;
+const NUMBER_OF_CARDS = 18;
 
 export interface CardContent {
     value: number;

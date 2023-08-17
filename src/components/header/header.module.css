@@ -1,8 +1,25 @@
 .header {
     width: 100%;
     padding: 5rem;
-    margin-bottom: 1.5rem;
+    margin-bottom: 3rem;
     text-align: center;
-    font-size: 2rem;
-    border-bottom: 1px solid #747474;
+    background-color: #222229;
+}
+
+.header h1 {
+    color: white;
+    font-weight: 400;
+    font-size: 5rem;
+}
+
+@media only screen and (max-width: 768px) {
+    .header h1 {
+        font-weight: 300;
+        font-size: 3rem;
+    }
+
+    .header {
+        width: 100%;
+        padding: 3rem;
+    }
 }
