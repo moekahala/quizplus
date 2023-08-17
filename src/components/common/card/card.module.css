@@ -1,0 +1,10 @@
+.card {
+    margin: .5rem;
+    height: 15rem;
+    width: 15rem;
+    background-color: #747474;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 3rem;
+}
