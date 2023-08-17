@@ -37,7 +37,11 @@
         // fixes Function component is not a function declaration
         "react/function-component-definition": 0,
         "react/destructuring-assignment": 0,
-        "no-unused-vars": 0
+        "no-unused-vars": 0,
+        "no-plusplus": 0,
+        "no-restricted-syntax": 0,
+        "import/prefer-default-export": 0,
+        "arrow-body-style": 0
     },
     "settings": {
         // fixes Unable to resolve path to module

@@ -1,10 +1,13 @@
 import React from 'react';
 import styles from './players.module.css';
 
-const PlayersTurn = () => (
+interface Props {
+    currentPlayer: number
+}
+const PlayersTurn = ({ currentPlayer }: Props) => (
   <section className={styles.playersWrapper}>
-    <div>Player 1</div>
-    <div>Player 2</div>
+    <div className={currentPlayer === 1 ? styles.selectedPlayer : ''}>Player 1</div>
+    <div className={currentPlayer === 2 ? styles.selectedPlayer : ''}>Player 2</div>
   </section>
 );
 

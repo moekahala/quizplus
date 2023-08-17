@@ -1,11 +1,16 @@
 import React from 'react';
 import Card from 'components/common/card/Card';
+import { CardContent } from 'containers/gameplayContainer/GameplayContainer';
 import styles from './cardsViewer.module.css';
 
-const CardsViewer = () => (
+interface Props {
+  cardsContent: CardContent[];
+  handleClick: (key: number) => void;
+}
+const CardsViewer = (props: Props) => (
   <section className={styles.viewer}>
-    {Array.from(Array(18).keys()).map(() => (
-      <Card />
+    {props.cardsContent.map((content: CardContent) => (
+      <Card content={content} key={content.key} handleClick={props.handleClick} />
     ))}
   </section>
 );
